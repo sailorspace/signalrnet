@@ -74,3 +74,21 @@ In addition, it has a second built-in protocol based on MessagePack, which is a 
 ASP.NET didn't have dependency injection built in, so SignalR provided a GlobalHost class that included its own dependency resolver.
 SignalR shipped with built-in support for scale-out using Redis, Service Bus, or SQL Server as a backplane.
 
+SignalR uses hubs class to communicate between clients and servers.
+A hub is a high-level pipeline class that allows a client and server to call methods to each other. SignalR handles the data communication across multiple boundaries automatically, it allows the clients to call methods which is available on the server and vice versa.
+
+The Hub class contains Context property and many more, which further provides other information about the connection, such as:
+- ConnectionAborted
+- ConnectionId
+- Features
+- Items
+- User
+- UserIdentifier
+
+When we are going to implement SignalR, then there are a set of goals which we need to achieve in this technology that are as follows:
+- Connection Management(Handshake)
+- Connect and Retry
+- Send/Receive message
+- Scales to handle increasing traffic.
+- Authentication
+
