@@ -1,0 +1,23 @@
+{
+  "name": "signalrnet",
+  "version": "1.0.0",
+  "description": "SignalR was created in 2011 by David Fowler and Damian Edwards. To achieve real-time messaging for the Web, developers used inefficient techniques such as  AJAX polling and  long-polling, and technologies like  server-sent events that weren't broadly implemented by browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sailorspace/signalrnet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sailorspace/signalrnet/issues"
+  },
+  "homepage": "https://github.com/sailorspace/signalrnet#readme",
+  "dependencies": {
+    "@microsoft/signalr": "^8.0.0"
+  }
+}

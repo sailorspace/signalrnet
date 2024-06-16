@@ -122,3 +122,7 @@ A new ASP.NET Core Razor Pages application with individual authentication is cre
 - create a hub : A hub is the central point in an ASP.NET Core application through which all SignalR 
   communication is routed.
 
+  - dotnet new web
+  - dotnet add package Microsoft.AspNetCore.SignalR
+  - npm install @microsoft/signalr
+
