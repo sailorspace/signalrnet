@@ -5,20 +5,37 @@ AJAX polling and
 long-polling, and technologies like 
 server-sent events that weren't broadly implemented by browsers
 
+SignalR works by following ways:-
+1.WebSockets
+2.Server-side events
+3.Long polling
+
 SignalR negotiates the best protocol to use for a specified connection based on what's supported by both the server and the client.
 It then provides a consistent API for sending and receiving messages in real-time
 When SignalR was created, almost every Web application used jQuery, so it was an easy decision for the SignalR JavaScript client to depend on jQuery as well
-WebSockets are available in all major browsers and are now the standard for real-time Web communications.
+
+# WebSockets are available in all major browsers and are now the standard for real-time Web communications.
 WebSocket is a computer communications protocol, providing a simultaneous two-way communication channel over a single Transmission Control Protocol connection.
 WebSockets are used for real-time, event-driven communication between clients and servers. They are particularly useful for building software applications requiring 
 instant updates, such as real-time chat, messaging, and multiplayer games
- 
+websockets connection remain open untill either side decides to close the connection.
+- the connection is closed if the browser is closed or the page is refreshed.
+
  - clients sends a http GET request with a upgrade header, so that the server know that this is a upgrade request and it responds with status 101 
    if the server supports the upgrade properties and return error code if not.
  - If any code other than 101 is returned from the server, Clients has to end the connection.
  - Websockets are consider as they make a single connection between client and server and there is no overhead of making those handshakes with the server every time 
    we have to communicate.
- 
+
+# server side events
+In server events case once the connection is made the server keeps sending the message in events.
+- unlike the web sockets the connections are only directional from the server to the clients. Not supported by microsoft IE or Edge
+- the initial client request has Accept header as text/event-stream letting the server how the client wants it to be
+
+# long polling 
+its the old way of getting the updates from the server and polling it on time based basis 
+or some mechanism to tell its time to connect to the server for new event or update.
+
 # Client side request headers look like this:
  GET /chat HTTP/1.1 <br/>
         Host: server.example.com<br/>
