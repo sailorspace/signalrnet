@@ -72,7 +72,12 @@ ASP.NET Core SignalR ships with a new JSON message protocol that's incompatible 
 In addition, it has a second built-in protocol based on MessagePack, which is a binary protocol that has smaller payloads than the text-based JSON.
 
 ASP.NET didn't have dependency injection built in, so SignalR provided a GlobalHost class that included its own dependency resolver.
-SignalR shipped with built-in support for scale-out using Redis, Service Bus, or SQL Server as a backplane.
+ - SignalR shipped with built-in support for scale-out using Redis, Service Bus, or SQL Server as a backplane.
+ - SignalR included reconnection logic on both the clients and the server. Clients attempted to reconnect if a 
+   connection was lost, and the server buffered unsent messages and replayed them when a client reconnected. 
+   This also proved to be buggy and inefficient, and the implementation didn't make sense for all applications.
+- ASP.NET Core SignalR doesn't support automatic reconnection or automatic buffering of messages. Instead,
+  it's up to the client application to decide when it needs to reconnect; and it's up to the server to implement message buffering if required.
 
 SignalR uses hubs class to communicate between clients and servers.
 A hub is a high-level pipeline class that allows a client and server to call methods to each other. SignalR handles the data communication across multiple boundaries automatically, it allows the clients to call methods which is available on the server and vice versa.
@@ -92,3 +97,6 @@ When we are going to implement SignalR, then there are a set of goals which we n
 - Scales to handle increasing traffic.
 - Authentication
 
+# working in sample 
+- dotnet new razor --auth Individual //creating a sample application on razor<br/>
+A new ASP.NET Core Razor Pages application with individual authentication is created. By default, users are stored in a SQLite database.<br/>
