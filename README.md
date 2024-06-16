@@ -20,14 +20,14 @@ instant updates, such as real-time chat, messaging, and multiplayer games
    we have to communicate.
  
 # Client side request headers look like this:
- GET /chat HTTP/1.1
-        Host: server.example.com
-        Upgrade: websocket
-        Connection: Upgrade
-        Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==
-        Origin: http://example.com
-        Sec-WebSocket-Protocol: chat, superchat
-        Sec-WebSocket-Version: 13
+ GET /chat HTTP/1.1 <br/>
+        Host: server.example.com<br/>
+        Upgrade: websocket<br/>
+        Connection: Upgrade<br/>
+        Sec-WebSocket-Key: dGhlIHNhbXBsZSBub25jZQ==<br/>
+        Origin: http://example.com<br/>
+        Sec-WebSocket-Protocol: chat, superchat<br/>
+        Sec-WebSocket-Version: 13<br/>
 
 - We are making a GET Request over http. (version needs to be greater or equals to 1.1)
 - Host name is added in the header so that both the client and server verify that they agree on which host is in use.
@@ -39,12 +39,12 @@ instant updates, such as real-time chat, messaging, and multiplayer games
 # Server will do following things
 - In order to prove that handshake was received, server has to take the Sec-WebSocket-key from the request header , 
  combine it with the Globally Unique Identifier , create a SHA-1 hash of this concatenation string.
-- Then it encodes that string using base64 and return as server handshake.
-HTTP/1.1 101 Switching Protocols
-        Upgrade: websocket
-        Connection: Upgrade
-        Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=
-        Sec-WebSocket-Protocol: chat
+- Then it encodes that string using base64 and return as server handshake.<br/>
+HTTP/1.1 101 Switching Protocols<br/>
+        Upgrade: websocket<br/>
+        Connection: Upgrade<br/>
+        Sec-WebSocket-Accept: s3pPLMBiTxaQ9kYGzzhZRbK+xOo=<br/>
+        Sec-WebSocket-Protocol: chat<br/>
 
 - Responds with a 101 status code, any code other than 101 results in error and means that websocket handshake was not completed.
 - The Connection and Upgrade field indicate the HTTP upgrade
