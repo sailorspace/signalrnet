@@ -100,3 +100,8 @@ When we are going to implement SignalR, then there are a set of goals which we n
 # working in sample 
 - dotnet new razor --auth Individual //creating a sample application on razor<br/>
 A new ASP.NET Core Razor Pages application with individual authentication is created. By default, users are stored in a SQLite database.<br/>
+
+- dotnet add package Microsoft.AspNetCore.SignalR  //the signal r package
+- create a hub : A hub is the central point in an ASP.NET Core application through which all SignalR 
+  communication is routed.
+
