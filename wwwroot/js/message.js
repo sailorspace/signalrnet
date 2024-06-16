@@ -30,3 +30,8 @@ document.getElementById("sendButton").addEventListener("click",function(event){
     event.preventDefault();
 
 });
+
+//do dotnet run
+//add messages and response in one tab
+//open same url in another tab and add messages and see how all clients(tabs here)
+//are recieving the messages in realtime
