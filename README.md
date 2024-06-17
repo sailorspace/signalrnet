@@ -126,3 +126,8 @@ A new ASP.NET Core Razor Pages application with individual authentication is cre
   - dotnet add package Microsoft.AspNetCore.SignalR
   - npm install @microsoft/signalr
 
+  - we can send messages to all subscribers
+  - send message to the caller
+  - send message to specific clients with connectionid
+  - send messages to groups
+
