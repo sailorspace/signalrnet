@@ -23,6 +23,15 @@ namespace signalrnet.hubs
         public Task SendMessageToUser(string connectionid,string message){
             return Clients.Client(connectionid).SendAsync("RecieveMessage",message);
         }
+
+       //call this function from the client side to add to the group
+        public Task JoinGroup(string group){
+            return Groups.AddToGroupAsync(Context.ConnectionId,group);
+        }
+
+        public Task SendMessageToGroup(string group,string message){
+            return Clients.Group(group).SendAsync(message);
+        }
         public override async Task OnConnectedAsync()
         {
             await Clients.All.SendAsync("UserConnected",Context.ConnectionId);
