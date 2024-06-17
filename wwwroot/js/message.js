@@ -1,38 +1,65 @@
 "use strict"
 
 var connection = new signalR.HubConnectionBuilder()
-                            .withUrl("/messages")
-                            .build();
+    .withUrl("/messages")
+    .build();
 
 //after declaring the connection to the endpoint of the hub
 //add a event handler to handle the messages recieved
-connection.on("RecieveMessage", function(message){
+connection.on("RecieveMessage", function (message) {
     //handle what to do with the message when client recieves the message
-    var msg = message.replace("/&/g","&amp");
+    var msg = message.replace("/&/g", "&amp");
     var div = document.createElement("div");
     div.innerHTML = msg + "<hr/>";
     document.getElementById("messages").append(div);
 
 });
 
-connection.start().catch(function(err){
-return console.error(err.toString());
+connection.on("UserConnected", function (connectionId) {
+    var groupElement = document.getElementById("group");
+    var option = document.createElement("option");
+    option.text = connectionId;
+    option.value = connectionId;
+    groupElement.add(option);
+
+});
+
+connection.on("UserDisconnected", function (connectionId) {
+    var groupElement = document.getElementById("group");
+    for (var i = 0; i < groupElement.length; i++) {
+        if (groupElement.option[i].value == connectionId)
+            groupElement.remove(i);
+    }
+
+});
+
+connection.start().catch(function (err) {
+    return console.error(err.toString());
 });
 
 //sending a message to the hub which in turn is sending the message to all
 //the cilents connected to the hub
-document.getElementById("sendButton").addEventListener("click",function(event){
+document.getElementById("sendButton").addEventListener("click", function (event) {
     //send message to the HUB
     var message = document.getElementById("message").value;
     var groupElement = document.getElementById("group");
     var groupvalue = groupElement.options[groupElement.selectedIndex].value;
-    var method = "SendMessageToAll";
-    console.log(method);
-    if(groupvalue==="Myself")
-          method = "SendMessageToCaller";
-    connection.invoke(method,message).catch(function(err){
-    return console.error(err.toString());
-    });
+    if (groupvalue == "All" || groupvalue == "Myself") {
+        var method = groupvalue == "All" ? "SendMessageToAll" : "SendMessageToCaller";
+
+        connection.invoke(method, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+    }
+    else {
+        connection.invoke("SendMessageToUser",groupvalue, message).catch(function (err) {
+            return console.error(err.toString());
+        });
+    }
+
+
+
     event.preventDefault();
 
 });
