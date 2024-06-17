@@ -24,7 +24,13 @@ return console.error(err.toString());
 document.getElementById("sendButton").addEventListener("click",function(event){
     //send message to the HUB
     var message = document.getElementById("message").value;
-    connection.invoke("SendMessageToClient",message).catch(function(err){
+    var groupElement = document.getElementById("group");
+    var groupvalue = groupElement.options[groupElement.selectedIndex].value;
+    var method = "SendMessageToAll";
+    console.log(method);
+    if(groupvalue==="Myself")
+          method = "SendMessageToCaller";
+    connection.invoke(method,message).catch(function(err){
     return console.error(err.toString());
     });
     event.preventDefault();

@@ -1,5 +1,9 @@
 @page
 <textarea name="message" id="message"></textarea>
+<select id="group" >
+    <option value="All">Everyone</option>
+    <option value="Myself">Just me</option>
+</select>
 <button type="button" id="sendButton" value="send message">Send Message</button>
 <div id="messages"></div>
 <script src="~/lib/signalr.js"></script>
